@@ -7,4 +7,6 @@
     <color name="colorNavBackground">#FFFFFF</color>
     <color name="colorNavItemActive">#FF755D</color>
     <color name="colorNavItemInActive">#9E9E9E</color>
+    <color name="colorStartBgHomeHeader">#FF8D26</color>
+    <color name="colorEndBgHomeHeader">#FF755D</color>
 </resources>

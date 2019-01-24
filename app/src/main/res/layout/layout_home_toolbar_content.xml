@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_person"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_person"
+        android:contentDescription="@string/app_name"/>
+
+    <TextView
+        android:id="@+id/tv_search"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@drawable/shape_search_tv_bg"
+        android:drawableStart="@drawable/ic_search"
+        android:drawableEnd="@drawable/ic_qr_code"
+        android:drawablePadding="@dimen/dp_4"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_8"
+        android:paddingEnd="@dimen/dp_8"
+        android:singleLine="true"
+        android:text="@string/app_name"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_watching_history"
+        app:layout_constraintStart_toEndOf="@+id/img_person"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_im"
+        style="@style/style_home_toolbar_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/selector_im"
+        android:contentDescription="@string/app_name"
+        android:layout_marginEnd="@dimen/dp_4"/>
+
+    <ImageView
+        android:id="@+id/img_mobile_games"
+        style="@style/style_home_toolbar_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_im"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/selector_mobile_games"
+        android:contentDescription="@string/app_name"/>
+
+    <ImageView
+        android:id="@+id/img_watching_history"
+        style="@style/style_home_toolbar_img"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_mobile_games"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/selector_watching_history"
+        android:contentDescription="@string/app_name"/>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--主页toolbar上右侧三个图标的样式-->
+    <style name="style_home_toolbar_img">
+        <item name="android:layout_width">@dimen/dp_40</item>
+        <item name="android:layout_height">@dimen/dp_48</item>
+        <item name="android:paddingTop">@dimen/dp_14</item>
+        <item name="android:paddingBottom">@dimen/dp_14</item>
+        <item name="android:paddingEnd">@dimen/dp_4</item>
+        <item name="android:paddingStart">@dimen/dp_4</item>
+    </style>
+
 </resources>

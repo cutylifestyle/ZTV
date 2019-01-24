@@ -7,18 +7,22 @@
     tools:context=".HomeActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_home"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="@dimen/dp_48"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
+        app:contentInsetStart="@dimen/dp_0"
+        android:background="@drawable/bg_home_header">
+
+        <include layout="@layout/layout_home_toolbar_content"/>
 
     </android.support.v7.widget.Toolbar>
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/nvb_home"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

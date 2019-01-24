@@ -10,7 +10,7 @@ import butterknife.BindView;
 public class HomeActivity extends BaseMvpActivity implements BottomNavigationBar.OnTabSelectedListener {
     //todo BaseActivity封装    BaseFragment的封装   手机屏幕适配
     //todo 平板提供一个hd版本的    采用mvp   rxjava的架构模式
-    //todo activity的跳转动画   通用toolbar  集成内存泄漏工具  数据库监测工具
+    //todo activity的跳转动画  集成内存泄漏工具  数据库监测工具
     @BindView(R.id.nvb_home)
     BottomNavigationBar mNavHome;
 
@@ -18,7 +18,8 @@ public class HomeActivity extends BaseMvpActivity implements BottomNavigationBar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        //todo 状态栏颜色渐变
+        setStatusBarColor(R.color.colorStartBgHomeHeader);
         mNavHome.setBarBackgroundColor(R.color.colorNavBackground)
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
                 .setMode(BottomNavigationBar.MODE_FIXED)
