@@ -5,4 +5,11 @@
     <string name="follow">关注</string>
     <string name="fish_bar">鱼吧</string>
     <string name="find">发现</string>
+
+    <!--测试数据-->
+    <string name="person_center">个人中心</string>
+    <string name="watching_history">观看历史</string>
+    <string name="mobile_games">手游</string>
+    <string name="im_center">聊天</string>
+
 </resources>

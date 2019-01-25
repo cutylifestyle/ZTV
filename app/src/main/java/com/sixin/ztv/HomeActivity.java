@@ -1,49 +1,99 @@
 package com.sixin.ztv;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.sixin.ztv.base.BaseMvpActivity;
+import com.gyf.barlibrary.ImmersionBar;
+import com.sixin.ztv.base.BaseActivity;
 import com.sixin.ztv.helper.BottomNavigationItemHelper;
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class HomeActivity extends BaseMvpActivity implements BottomNavigationBar.OnTabSelectedListener {
-    //todo BaseActivity封装    BaseFragment的封装   手机屏幕适配
+public class HomeActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
+    //todo BaseActivity封装
     //todo 平板提供一个hd版本的    采用mvp   rxjava的架构模式
-    //todo activity的跳转动画  集成内存泄漏工具  数据库监测工具
+    //todo activity的跳转动画  BaseFragment的封装
+    //todo 过度绘制
+    //todo 集成Crash日志工具类
+    //todo 集成谷歌的权限工具类
+    //todo 集成log工具类
     @BindView(R.id.nvb_home)
     BottomNavigationBar mNavHome;
 
+    @BindView(R.id.img_person)
+    ImageView mImgPerson;
+
+    @BindView(R.id.img_watching_history)
+    ImageView mImgWatchingHistory;
+
+    @BindView(R.id.img_mobile_games)
+    ImageView mImgMobileGames;
+
+    @BindView(R.id.img_im)
+    ImageView mImgIm;
+
+    @OnClick({R.id.img_person, R.id.img_watching_history, R.id.img_mobile_games, R.id.img_im})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_person:
+                toast(R.string.person_center);
+                break;
+            case R.id.img_watching_history:
+                toast(R.string.watching_history);
+                break;
+            case R.id.img_mobile_games:
+                toast(R.string.mobile_games);
+                break;
+            case R.id.img_im:
+                toast(R.string.im_center);
+                break;
+        }
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        //todo 状态栏颜色渐变
-        setStatusBarColor(R.color.colorStartBgHomeHeader);
+    protected int getLayoutId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    protected void initImmersionBar() {
+        ImmersionBar.with(this).titleBar(R.id.toolbar_home).init();
+    }
+
+    @Override
+    protected void initView() {
+        initBottomNavigationBar();
+    }
+
+    private void initBottomNavigationBar() {
         mNavHome.setBarBackgroundColor(R.color.colorNavBackground)
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .addItem(new BottomNavigationItem(R.drawable.jiankong_selected,getString(R.string.recommend))
-                            .setInactiveIconResource(R.drawable.jiankong)
-                            .setActiveColorResource(R.color.colorNavItemActive)
-                            .setInActiveColorResource(R.color.colorNavItemInActive))
+                        .setInactiveIconResource(R.drawable.jiankong)
+                        .setActiveColorResource(R.color.colorNavItemActive)
+                        .setInActiveColorResource(R.color.colorNavItemInActive))
                 .addItem(new BottomNavigationItem(R.drawable.starfish_selected,getString(R.string.entertainment))
-                            .setInactiveIconResource(R.drawable.starfish)
-                            .setActiveColorResource(R.color.colorNavItemActive)
-                            .setInActiveColorResource(R.color.colorNavItemInActive))
+                        .setInactiveIconResource(R.drawable.starfish)
+                        .setActiveColorResource(R.color.colorNavItemActive)
+                        .setInActiveColorResource(R.color.colorNavItemInActive))
                 .addItem(new BottomNavigationItem(R.drawable.love_selected,getString(R.string.follow))
-                            .setInactiveIconResource(R.drawable.love)
-                            .setActiveColorResource(R.color.colorNavItemActive)
-                            .setInActiveColorResource(R.color.colorNavItemInActive))
+                        .setInactiveIconResource(R.drawable.love)
+                        .setActiveColorResource(R.color.colorNavItemActive)
+                        .setInActiveColorResource(R.color.colorNavItemInActive))
                 .addItem(new BottomNavigationItem(R.drawable.shangpin_selected,getString(R.string.fish_bar))
-                            .setInactiveIconResource(R.drawable.shangpin)
-                            .setActiveColorResource(R.color.colorNavItemActive)
-                            .setInActiveColorResource(R.color.colorNavItemInActive))
+                        .setInactiveIconResource(R.drawable.shangpin)
+                        .setActiveColorResource(R.color.colorNavItemActive)
+                        .setInActiveColorResource(R.color.colorNavItemInActive))
                 .addItem(new BottomNavigationItem(R.drawable.lingdang_selected,getString(R.string.find))
-                            .setInactiveIconResource(R.drawable.lingdang)
-                            .setActiveColorResource(R.color.colorNavItemActive)
-                            .setInActiveColorResource(R.color.colorNavItemInActive))
+                        .setInactiveIconResource(R.drawable.lingdang)
+                        .setActiveColorResource(R.color.colorNavItemActive)
+                        .setInActiveColorResource(R.color.colorNavItemInActive))
                 .initialise();
+        //todo 尺寸部分存在问题，需要适配
         BottomNavigationItemHelper.setBottomNavigationItem(mNavHome,8,26,12);
 
         mNavHome.setTabSelectedListener(this);
