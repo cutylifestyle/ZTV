@@ -1,6 +1,5 @@
 package com.sixin.ztv;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,12 +13,13 @@ import butterknife.OnClick;
 
 public class HomeActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     //todo BaseActivity封装
+    //todo BaseMvpActivity封装
     //todo 平板提供一个hd版本的    采用mvp   rxjava的架构模式
     //todo activity的跳转动画  BaseFragment的封装
     //todo 过度绘制
     //todo 集成Crash日志工具类
-    //todo 集成谷歌的权限工具类
-    //todo 集成log工具类
+    //todo 剪切板工具类
+    //todo 首页界面
     @BindView(R.id.nvb_home)
     BottomNavigationBar mNavHome;
 
@@ -39,16 +39,12 @@ public class HomeActivity extends BaseActivity implements BottomNavigationBar.On
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_person:
-                toast(R.string.person_center);
                 break;
             case R.id.img_watching_history:
-                toast(R.string.watching_history);
                 break;
             case R.id.img_mobile_games:
-                toast(R.string.mobile_games);
                 break;
             case R.id.img_im:
-                toast(R.string.im_center);
                 break;
         }
     }
