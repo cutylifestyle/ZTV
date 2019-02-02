@@ -12,4 +12,10 @@
     <string name="mobile_games">手游</string>
     <string name="im_center">聊天</string>
 
+    <!--权限申请相关提示-->
+    <string name="permissions_denied">为保证您正常安全、安全的使用斗鱼，需要获取相关权限，请允许</string>
+    <string name="exit">退出</string>
+    <string name="granted">去允许</string>
+    <string name="go_open">去开启</string>
+    <string name="open_permissions">ZTV无法获取启动应用需要的相关权限，请前往应用设置开启权限</string>
 </resources>
