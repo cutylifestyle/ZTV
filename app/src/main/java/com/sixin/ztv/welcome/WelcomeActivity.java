@@ -1,19 +1,27 @@
-package com.sixin.ztv;
+package com.sixin.ztv.welcome;
 
 import android.Manifest;
 import android.content.DialogInterface;
-import android.graphics.Color;
+import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.gyf.barlibrary.BarHide;
 import com.gyf.barlibrary.ImmersionBar;
+import com.sixin.ztv.App;
+import com.sixin.ztv.R;
 import com.sixin.ztv.base.BaseActivity;
+import com.sixin.ztv.home.HomeActivity;
 import com.sixin.ztv.utils.ActivityUtils;
+import com.sixin.ztv.utils.DeviceUtils;
 import com.sixin.ztv.utils.LogUtils;
+import com.sixin.ztv.utils.PhoneUtils;
+import com.sixin.ztv.utils.ScreenUtils;
+import com.sixin.ztv.utils.Utils;
+import com.sixin.ztv.welcome.model.bean.Device;
+import com.sixin.ztv.welcome.model.bean.Platform;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Setting;
@@ -33,6 +41,7 @@ public class WelcomeActivity extends BaseActivity {
     //todo 抓包
     //todo 看别人是如何结合mvp/retrofit/rxJava来进行网络请求的
     //todo 实践
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +78,8 @@ public class WelcomeActivity extends BaseActivity {
                      .onGranted(new Action<List<String>>() {
                          @Override
                          public void onAction(List<String> data) {
+                             setGlobData();
+                             jumpToHome();
                          }
                      })
                      .onDenied(new Action<List<String>>() {
@@ -144,7 +155,8 @@ public class WelcomeActivity extends BaseActivity {
                                 Manifest.permission.READ_PHONE_STATE
                         };
                         if(AndPermission.hasPermissions(WelcomeActivity.this, permissions)){
-
+                                setGlobData();
+                                jumpToHome();
                         }else{
                             requestAppPermission();
                         }
@@ -152,5 +164,49 @@ public class WelcomeActivity extends BaseActivity {
                     }
                 })
                 .start();
+    }
+
+    private void jumpToHome() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ActivityUtils.startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
+                finish();
+            }
+        }, 1500);
+    }
+
+    private void setGlobData() {
+        Device device = new Device();
+        device.setAddid("16b4c2381ee392ee");
+        device.setDevtype("0");
+        device.setH(Integer.toString(ScreenUtils.getScreenHeight()));
+        device.setImei(PhoneUtils.getIMEI());
+        //todo 该方法需要联网获取，所有存在问题跳转了页面，值还没有获取到，无网络情况
+        device.setMac(DeviceUtils.getMacAddress());
+        device.setMfrs(DeviceUtils.getManufacturer());
+        device.setModel(DeviceUtils.getModel());
+        device.setNt("1");
+        device.setOp("1");
+        device.setIdfa("");
+        device.setOs("Android");
+        device.setOsv(DeviceUtils.getSDKVersionName());
+        device.setUa("Douyu_Android");
+        device.setW(Integer.toString(ScreenUtils.getScreenWidth()));
+
+        Platform platform = new Platform();
+        platform.setAname("斗鱼直播");
+        platform.setPname("air.tv.douyu.android");
+
+        ((App)Utils.getApp()).setDeviceInfo(device);
+        ((App)Utils.getApp()).setmPlatform(platform);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+        super.onDestroy();
     }
 }

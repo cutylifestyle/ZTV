@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".recommend.channel.ChannelFragment">
+
+    <com.sixin.ztv.widget.convenientbanner.ConvenientBanner
+        android:id="@+id/banner_channel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_128"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:canLoop="true"
+        app:autoTurningTime="3000" />
+
+</android.support.constraint.ConstraintLayout>

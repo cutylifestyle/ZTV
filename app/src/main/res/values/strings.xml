@@ -18,4 +18,19 @@
     <string name="granted">去允许</string>
     <string name="go_open">去开启</string>
     <string name="open_permissions">ZTV无法获取启动应用需要的相关权限，请前往应用设置开启权限</string>
+
+    <!--fragment_tag-->
+    <string name="recommend_fragment_tag">recommend_fragment_tag</string>
+    <string name="entertainment_fragment_tag">entertainment_fragment_tag</string>
+    <string name="follow_fragment_tag">follow_fragment_tag</string>
+    <string name="fish_bar_fragment_tag">fish_bar_fragment_tag</string>
+    <string name="find_fragment_tag">find_fragment_tag</string>
+
+    <!--多状态布局-->
+    <string name="no_network_please_retry">数据显示异常，请点击重试</string>
+    <string name="no_network_please_check_network">当前网络不可用，请检查网络设置</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

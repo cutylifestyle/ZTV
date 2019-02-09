@@ -1,4 +1,4 @@
-package com.sixin.ztv;
+package com.sixin.ztv.base;
 
 public interface BaseView {
     /**

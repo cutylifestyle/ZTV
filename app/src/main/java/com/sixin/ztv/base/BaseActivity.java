@@ -2,7 +2,11 @@ package com.sixin.ztv.base;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,11 +18,14 @@ import com.sixin.ztv.utils.ActivityUtils;
 import com.sixin.ztv.utils.ScreenUtils;
 import com.sixin.ztv.utils.ToastUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
+    //todo BaseMvpFragment的封装
     private Unbinder mUnbinder;
     private boolean mAllowFullScreen = false;
     private boolean mAllowScreenRotate = false;
@@ -100,6 +107,95 @@ public abstract class BaseActivity extends AppCompatActivity {
         //todo startActivity以及startActivityForResult的编写
         //todo 软件盘的显示与隐藏
         //todo 网络监听相关
+    }
+
+
+
+    protected void addFragmentV4(Fragment fragment, String tag, int containerId){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(containerId, fragment, tag);
+        transaction.commit();
+    }
+
+
+
+    protected void bindFragment(android.app.Fragment fragment, int containerId){
+        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(containerId, fragment);
+        transaction.commit();
+    }
+
+
+
+    /**
+     * 碎片是否存在
+     * @param fragmentTag 碎片的标签
+     * @return boolean {@code true}: 存在<br>{@code false}: 不存在
+     * */
+    protected boolean isFragmentExist(@NonNull String fragmentTag){
+        List<Fragment> fragments =  getSupportFragmentManager().getFragments();
+        if(fragments != null && fragments.size() > 0){
+            for(Fragment fragment:fragments){
+                if(fragmentTag.equals(fragment.getTag())){
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+
+
+    /**
+     * 根据标签显示碎片
+     * @param fragmentTag 碎片的标签
+     * */
+    protected void showFragmentByTag(@NonNull String fragmentTag){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        List<Fragment> fragments =  fragmentManager.getFragments();
+        if(fragments != null && fragments.size() > 0){
+            for(Fragment fragment:fragments){
+                if(fragmentTag.equals(fragment.getTag())){
+                    transaction.show(fragment);
+                }else{
+                    transaction.hide(fragment);
+                }
+            }
+            transaction.commit();
+        }
+    }
+
+
+
+    /**
+     * 隐藏所有碎片
+     * */
+    protected void hideAllFragments(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        List<Fragment> fragments =  fragmentManager.getFragments();
+        if(fragments != null && fragments.size() > 0 ){
+            for(Fragment fragment:fragments){
+                transaction.hide(fragment);
+            }
+            transaction.commit();
+        }
+    }
+
+    /**
+     * 显示或添加碎片
+     * */
+    //todo 这个代码耗时比较严重，需要优化
+    protected void showOrAddFragment(@NonNull String fragmentTag,@NonNull Fragment fragment, int containerId){
+        boolean result = isFragmentExist(fragmentTag);
+        if(result){
+            showFragmentByTag(fragmentTag);
+        }else{
+            hideAllFragments();
+            addFragmentV4(fragment,fragmentTag,containerId);
+        }
     }
 
     /**

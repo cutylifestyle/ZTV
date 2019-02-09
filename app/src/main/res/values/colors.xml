@@ -10,4 +10,5 @@
     <color name="colorStartBgHomeHeader">#FF8D26</color>
     <color name="colorEndBgHomeHeader">#FF755D</color>
     <color name="white">#FFFFFF</color>
+    <color name="colorBgNoNetwork">#F2F5F6</color>
 </resources>
