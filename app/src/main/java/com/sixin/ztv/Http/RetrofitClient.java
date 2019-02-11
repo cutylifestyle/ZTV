@@ -56,7 +56,6 @@ public class RetrofitClient {
                 .build();
 
         mRetrofit = new Retrofit.Builder()
-                //todo 支持多BaseUrl
                 .baseUrl(Request.BASE_URL)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

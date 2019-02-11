@@ -5,6 +5,7 @@ import com.sixin.ztv.base.RxPresenter;
 import com.sixin.ztv.recommend.model.RecommendDataManager;
 import com.sixin.ztv.recommend.model.RecommendModel;
 import com.sixin.ztv.recommend.model.bean.RecommendChannelBean;
+import com.sixin.ztv.utils.LogUtils;
 
 import java.util.List;
 

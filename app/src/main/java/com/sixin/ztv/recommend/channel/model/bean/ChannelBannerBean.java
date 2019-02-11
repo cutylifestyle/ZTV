@@ -1,8 +1,9 @@
 package com.sixin.ztv.recommend.channel.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ChannelBannerBean {
+public class ChannelBannerBean implements Serializable {
 
         /**
          * rgtype : 2
