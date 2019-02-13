@@ -38,7 +38,7 @@ public class IndicatorAdapter extends CommonNavigatorAdapter {
 
     @Override
     public IPagerTitleView getTitleView(Context context, final int index) {
-        SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
+        SimplePagerTitleView simplePagerTitleView = new ScaleTransitionPagerTitleView(context);
         simplePagerTitleView.setNormalColor(Color.WHITE);
         simplePagerTitleView.setSelectedColor(Color.WHITE);
         simplePagerTitleView.setTextSize(17);
@@ -54,11 +54,11 @@ public class IndicatorAdapter extends CommonNavigatorAdapter {
 
     @Override
     public IPagerIndicator getIndicator(Context context) {
-        LinePagerIndicator linePagerIndicator = new LinePagerIndicator(context);
-        linePagerIndicator.setMode(LinePagerIndicator.MODE_EXACTLY);
-        linePagerIndicator.setLineWidth(UIUtil.dip2px(context, 40));
-        linePagerIndicator.setColors(Color.WHITE);
-        return linePagerIndicator;
+//        LinePagerIndicator linePagerIndicator = new LinePagerIndicator(context);
+//        linePagerIndicator.setMode(LinePagerIndicator.MODE_EXACTLY);
+//        linePagerIndicator.setLineWidth(UIUtil.dip2px(context, 40));
+//        linePagerIndicator.setColors(Color.WHITE);
+        return null;
     }
 
 }

@@ -64,14 +64,14 @@ public class RecommendFragment extends BaseMvpFragment<RecommendContract.Present
         CommonNavigator commonNavigator = new CommonNavigator(getContext());
         commonNavigator.setAdapter(mIndicatorApdater);
         mIndicatorRecommend.setNavigator(commonNavigator);
-        LinearLayout titleContainer = commonNavigator.getTitleContainer(); // must after setNavigator
-        titleContainer.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
-        titleContainer.setDividerDrawable(new ColorDrawable() {
-            @Override
-            public int getIntrinsicWidth() {
-                return UIUtil.dip2px(getContext(), 15);
-            }
-        });
+//        LinearLayout titleContainer = commonNavigator.getTitleContainer(); // must after setNavigator
+//        titleContainer.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+//        titleContainer.setDividerDrawable(new ColorDrawable() {
+//            @Override
+//            public int getIntrinsicWidth() {
+//                return UIUtil.dip2px(getContext(), 10);
+//            }
+//        });
         final FragmentContainerHelper fragmentContainerHelper = new FragmentContainerHelper(mIndicatorRecommend);
         fragmentContainerHelper.setInterpolator(new OvershootInterpolator(2.0f));
         fragmentContainerHelper.setDuration(300);
