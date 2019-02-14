@@ -30,7 +30,9 @@ public class ImageHolderView extends Holder<ChannelBannerBean> {
     public void updateUI(ChannelBannerBean data) {
         if (data != null) {
             //todo 添加错误图片  空图片   对图片进行压缩处理
-            Glide.with(Utils.getApp()).load(data.getSrcid()).into(mImgView);
+            Glide.with(Utils.getApp())
+                    .load(data.getSrcid())
+                    .into(mImgView);
             mTvChannelBanner.setText(data.getAdtitle());
         }
     }

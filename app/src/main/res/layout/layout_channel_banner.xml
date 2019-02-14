@@ -16,7 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:riv_mutate_background="true"
         app:riv_corner_radius="@dimen/dp_16"
-        app:riv_oval="false"/>
+        app:riv_oval="false"
+        android:src="@drawable/ic_banner_placeholder"/>
 
     <TextView
         android:id="@+id/tv_channel_banner"

@@ -10,14 +10,19 @@ import android.view.ViewGroup;
 
 import com.sixin.ztv.R;
 import com.sixin.ztv.base.BaseMvpFragment;
+import com.sixin.ztv.recommend.channel.adapter.LevelLableAdapter;
 import com.sixin.ztv.recommend.channel.holder.ImageHolderView;
 import com.sixin.ztv.recommend.channel.model.bean.ChannelBannerBean;
+import com.sixin.ztv.recommend.channel.model.bean.ChannelLevelLableBean;
 import com.sixin.ztv.recommend.model.bean.RecommendChannelBean;
 import com.sixin.ztv.utils.LogUtils;
 import com.sixin.ztv.widget.convenientbanner.ConvenientBanner;
 import com.sixin.ztv.widget.convenientbanner.holder.CBViewHolderCreator;
 import com.sixin.ztv.widget.convenientbanner.holder.Holder;
 import com.sixin.ztv.widget.convenientbanner.listener.OnItemClickListener;
+
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +35,9 @@ public class ChannelFragment extends BaseMvpFragment<ChannelContract.Presenter> 
     //todo 修改banner源码使其外观支持圆角
     @BindView(R.id.banner_channel)
     ConvenientBanner<ChannelBannerBean> mBannerChannel;
+
+    @BindView(R.id.indicator_level_label)
+    MagicIndicator mIndicatorLevelLabel;
 
     public ChannelFragment() {
         // Required empty public constructor
@@ -70,8 +78,14 @@ public class ChannelFragment extends BaseMvpFragment<ChannelContract.Presenter> 
     }
 
     @Override
-    public void showHeader(List<ChannelBannerBean> channelBannerBeans) {
+    public void showBanners(List<ChannelBannerBean> channelBannerBeans) {
+        //TODO 集合的判断进行工具类的封装
         if (channelBannerBeans != null && channelBannerBeans.size() > 0) {
+            //todo 这个部分的判断放到父类中
+            if (mBannerChannel.getVisibility() == View.GONE || mBannerChannel.getVisibility() == View.INVISIBLE) {
+                mBannerChannel.setVisibility(View.VISIBLE);
+            }
+
             mBannerChannel.setPages(new CBViewHolderCreator() {
                 @Override
                 public Holder createHolder(View itemView) {
@@ -83,14 +97,49 @@ public class ChannelFragment extends BaseMvpFragment<ChannelContract.Presenter> 
                     return R.layout.layout_channel_banner;
                 }
             }, channelBannerBeans)
-                    //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
-//                .setPageIndicator(new int[]{R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused})
                     .setOnItemClickListener(this)
                     //设置指示器的方向
-                    .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
-            ;
+                    .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
+
+            if (channelBannerBeans.size() > 1) {
+                //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
+                mBannerChannel.setPageIndicator(new int[]{R.drawable.ic_dot_normal, R.drawable.ic_dot_focused});
+            }
+
+            if (channelBannerBeans.size() == 1) {
+                mBannerChannel.setCanLoop(false);
+            }
         } else{
             //todo 待处理
+        }
+    }
+
+    @Override
+    public void hideBanners() {
+        if (mBannerChannel != null && (mBannerChannel.getVisibility() == View.VISIBLE || mBannerChannel.getVisibility() == View.INVISIBLE)) {
+            mBannerChannel.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showLevelLabels(List<ChannelLevelLableBean> channelLevelLableBeans) {
+        if (channelLevelLableBeans != null && channelLevelLableBeans.size() > 0) {
+            if (mIndicatorLevelLabel != null && (mIndicatorLevelLabel.getVisibility() == View.GONE || mIndicatorLevelLabel.getVisibility() == View.INVISIBLE)) {
+                mIndicatorLevelLabel.setVisibility(View.VISIBLE);
+            }
+
+            CommonNavigator commonNavigator = new CommonNavigator(getContext());
+            commonNavigator.setAdapter(new LevelLableAdapter(channelLevelLableBeans));
+            mIndicatorLevelLabel.setNavigator(commonNavigator);
+        }else{
+            //todo 待处理
+        }
+    }
+
+    @Override
+    public void hideLevelLables() {
+        if (mIndicatorLevelLabel != null && (mIndicatorLevelLabel.getVisibility() == View.VISIBLE || mIndicatorLevelLabel.getVisibility() == View.INVISIBLE)) {
+            mIndicatorLevelLabel.setVisibility(View.GONE);
         }
     }
 
