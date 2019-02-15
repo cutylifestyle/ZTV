@@ -21,6 +21,7 @@ import com.sixin.ztv.widget.convenientbanner.holder.CBViewHolderCreator;
 import com.sixin.ztv.widget.convenientbanner.holder.Holder;
 import com.sixin.ztv.widget.convenientbanner.listener.OnItemClickListener;
 
+import net.lucode.hackware.magicindicator.FragmentContainerHelper;
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 
@@ -38,6 +39,8 @@ public class ChannelFragment extends BaseMvpFragment<ChannelContract.Presenter> 
 
     @BindView(R.id.indicator_level_label)
     MagicIndicator mIndicatorLevelLabel;
+
+
 
     public ChannelFragment() {
         // Required empty public constructor
@@ -123,14 +126,20 @@ public class ChannelFragment extends BaseMvpFragment<ChannelContract.Presenter> 
 
     @Override
     public void showLevelLabels(List<ChannelLevelLableBean> channelLevelLableBeans) {
+        //todo 碎片中嵌套碎片   代码按照MagicIndicator写一遍  考察switchPages方法  和轮播图的警告
         if (channelLevelLableBeans != null && channelLevelLableBeans.size() > 0) {
             if (mIndicatorLevelLabel != null && (mIndicatorLevelLabel.getVisibility() == View.GONE || mIndicatorLevelLabel.getVisibility() == View.INVISIBLE)) {
                 mIndicatorLevelLabel.setVisibility(View.VISIBLE);
             }
-
-            CommonNavigator commonNavigator = new CommonNavigator(getContext());
-            commonNavigator.setAdapter(new LevelLableAdapter(channelLevelLableBeans));
+            final FragmentContainerHelper fragmentContainerHelper = new FragmentContainerHelper();
+            final CommonNavigator commonNavigator = new CommonNavigator(getContext());
+            final LevelLableAdapter levelLableAdapter = new LevelLableAdapter(channelLevelLableBeans,getChildFragmentManager(),fragmentContainerHelper);
+            commonNavigator.setAdapter(levelLableAdapter);
             mIndicatorLevelLabel.setNavigator(commonNavigator);
+            fragmentContainerHelper.attachMagicIndicator(mIndicatorLevelLabel);
+
+            fragmentContainerHelper.handlePageSelected(0,false);
+            levelLableAdapter.switchPages(0);
         }else{
             //todo 待处理
         }

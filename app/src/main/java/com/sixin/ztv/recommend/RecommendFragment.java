@@ -55,7 +55,7 @@ public class RecommendFragment extends BaseMvpFragment<RecommendContract.Present
     }
 
     private void initViewPager() {
-        mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), null);
+        mViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), null);
         mVpChannel.setAdapter(mViewPagerAdapter);
     }
 
