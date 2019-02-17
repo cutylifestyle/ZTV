@@ -73,8 +73,8 @@ public class RecommendFragment extends BaseMvpFragment<RecommendContract.Present
 //            }
 //        });
         final FragmentContainerHelper fragmentContainerHelper = new FragmentContainerHelper(mIndicatorRecommend);
-        fragmentContainerHelper.setInterpolator(new OvershootInterpolator(2.0f));
-        fragmentContainerHelper.setDuration(300);
+//        fragmentContainerHelper.setInterpolator(new OvershootInterpolator(2.0f));
+//        fragmentContainerHelper.setDuration(300);
         mVpChannel.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_room"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_96"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_room_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_32"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_8"
+        android:paddingEnd="@dimen/dp_8"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_room" />
+
+    <TextView
+        android:id="@+id/tv_up_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:paddingStart="@dimen/dp_8"
+        android:paddingEnd="@dimen/dp_8"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toTopOf="@+id/tv_room_title"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/img_room"
+        android:singleLine="true"
+        android:ellipsize="end"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+    <!--todo 后期这个部分的图片需要替换成矢量图-->
+    <TextView
+        android:id="@+id/tv_up_hot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tv_room_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="@dimen/sp_12"
+        android:drawableStart="@drawable/ic_hot"
+        android:drawablePadding="@dimen/dp_4"
+        android:gravity="center_vertical"/>
+
+
+</android.support.constraint.ConstraintLayout>

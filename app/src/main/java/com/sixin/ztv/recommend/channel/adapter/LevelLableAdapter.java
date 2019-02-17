@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.sixin.ztv.R;
-import com.sixin.ztv.recommend.adapter.ScaleTransitionPagerTitleView;
 import com.sixin.ztv.recommend.channel.fragments.fragment1.LabelFragment1;
 import com.sixin.ztv.recommend.channel.fragments.fragment10.LabelFragment10;
 import com.sixin.ztv.recommend.channel.fragments.fragment11.LabelFragment11;
@@ -25,6 +24,7 @@ import com.sixin.ztv.recommend.channel.fragments.fragment7.LabelFragment7;
 import com.sixin.ztv.recommend.channel.fragments.fragment8.LabelFragment8;
 import com.sixin.ztv.recommend.channel.fragments.fragment9.LabelFragment9;
 import com.sixin.ztv.recommend.channel.model.bean.ChannelLevelLableBean;
+import com.sixin.ztv.widget.TypefaceTransitionPagerTitleView;
 
 import net.lucode.hackware.magicindicator.FragmentContainerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
@@ -55,6 +55,7 @@ public class LevelLableAdapter extends CommonNavigatorAdapter {
             for (ChannelLevelLableBean channelLevelLableBean : data) {
                 int componentId = channelLevelLableBean.getComponent_id();
                 switch (componentId) {
+                    //todo 这么多的碎片有相同的重复操作，如何封装
                     case 1:
                         mFragments.add(LabelFragment1.newInstance());
                         break;
@@ -86,7 +87,7 @@ public class LevelLableAdapter extends CommonNavigatorAdapter {
                         mFragments.add(LabelFragment10.newInstance());
                         break;
                     case 11:
-                        mFragments.add(LabelFragment11.newInstance());
+                        mFragments.add(LabelFragment11.newInstance(channelLevelLableBean));
                         break;
                     case 12:
                         mFragments.add(LabelFragment12.newInstance());
