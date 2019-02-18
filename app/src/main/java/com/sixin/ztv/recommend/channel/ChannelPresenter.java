@@ -50,6 +50,9 @@ public class ChannelPresenter extends RxPresenter<ChannelContract.View> implemen
                                     List<ChannelLevelLableBean> result = new ArrayList<>();
                                     for (ChannelLevelLableBean channelLevelLableBean : channelLevelLableBeans) {
                                         if (channelLevelLableBean.getIs_tab() != 0) {
+                                            if (channelLevelLableBean.getCate2_id() == 1 && "视频推荐".equals(channelLevelLableBean.getTitle())) {
+                                                continue;
+                                            }
                                             result.add(channelLevelLableBean);
                                         }
                                     }
