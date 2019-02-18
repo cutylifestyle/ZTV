@@ -7,5 +7,7 @@ import io.reactivex.disposables.Disposable;
 
 public interface LivePreviewModel {
 
-    Disposable getLivePreviewInfo(int subLabelId, int position, ResponseListener<LivePreviewBean> listener);
+    Disposable getLivePreviewInfo(int subLabelId, ResponseListener<LivePreviewBean> listener);
+
+    void resetPosition();
 }

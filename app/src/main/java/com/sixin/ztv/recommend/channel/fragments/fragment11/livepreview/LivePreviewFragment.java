@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sixin.ztv.R;
 import com.sixin.ztv.base.BaseFragment;
 import com.sixin.ztv.base.BaseMvpFragment;
@@ -22,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 
 
-public class LivePreviewFragment extends BaseMvpFragment<LivePreviewContract.Presenter> implements LivePreviewContract.View {
+public class LivePreviewFragment extends BaseMvpFragment<LivePreviewContract.Presenter> implements LivePreviewContract.View, OnRefreshListener, OnLoadMoreListener {
 
     @BindView(R.id.srl_live_preview)
     SmartRefreshLayout mSrlLivePreview;
@@ -51,7 +54,13 @@ public class LivePreviewFragment extends BaseMvpFragment<LivePreviewContract.Pre
 
     @Override
     protected void initView() {
+        initSmartRefresh();
         initRecyclerView();
+    }
+
+    private void initSmartRefresh() {
+        mSrlLivePreview.setOnRefreshListener(this);
+        mSrlLivePreview.setOnLoadMoreListener(this);
     }
 
     private void initRecyclerView() {
@@ -62,7 +71,7 @@ public class LivePreviewFragment extends BaseMvpFragment<LivePreviewContract.Pre
 
     @Override
     protected void loadData() {
-        mPresenter.loadLivePreviewInfo(getArguments()!= null? (SubLabelBean) getArguments().getSerializable(SubLabelBean.class.getSimpleName()) :null);
+        mSrlLivePreview.autoRefresh();
     }
 
     @Override
@@ -77,11 +86,32 @@ public class LivePreviewFragment extends BaseMvpFragment<LivePreviewContract.Pre
     }
 
     @Override
-    public void showLivePreviewInfo(List<LivePreviewBean.ListBean> listBeans) {
-        if (listBeans != null && listBeans.size() > 0) {
-            mLivePreviewAdapter.addData(listBeans);
+    public void showLivePreviewInfo(List<LivePreviewBean.ListBean> listBeans,boolean isRefresh) {
+        if (listBeans != null) {
+            if (isRefresh) {
+                mSrlLivePreview.finishRefresh(true);
+                mLivePreviewAdapter.setNewData(listBeans);
+            }else{
+                if (listBeans.size() == 0) {
+                    mSrlLivePreview.setNoMoreData(true);
+                }else{
+                    mSrlLivePreview.finishLoadMore(true);
+                    mLivePreviewAdapter.addData(listBeans);
+                }
+            }
         }else{
 
         }
+    }
+
+    @Override
+    public void onRefresh(RefreshLayout refreshLayout) {
+        mSrlLivePreview.setNoMoreData(false);
+        mPresenter.loadLivePreviewInfo(getArguments()!= null? (SubLabelBean) getArguments().getSerializable(SubLabelBean.class.getSimpleName()) :null,true);
+    }
+
+    @Override
+    public void onLoadMore(RefreshLayout refreshLayout) {
+        mPresenter.loadLivePreviewInfo(getArguments()!= null? (SubLabelBean) getArguments().getSerializable(SubLabelBean.class.getSimpleName()) :null,false);
     }
 }

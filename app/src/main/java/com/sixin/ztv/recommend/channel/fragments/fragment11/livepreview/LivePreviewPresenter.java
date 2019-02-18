@@ -21,19 +21,18 @@ public class LivePreviewPresenter extends RxPresenter<LivePreviewContract.View> 
 
 
     @Override
-    public void loadLivePreviewInfo(SubLabelBean subLabelBean) {
+    public void loadLivePreviewInfo(SubLabelBean subLabelBean, final boolean isRefresh) {
+        //todo 这个部分重新写，分开来写
         if (subLabelBean != null) {
-            addSubscribe(mLivePreviewModel.getLivePreviewInfo(subLabelBean.getId(), 0, new ResponseListener<LivePreviewBean>() {
+            if (isRefresh) {
+                mLivePreviewModel.resetPosition();
+            }
+            addSubscribe(mLivePreviewModel.getLivePreviewInfo(subLabelBean.getId(), new ResponseListener<LivePreviewBean>() {
                 @Override
                 public void onSuccess(LivePreviewBean livePreviewBean) {
                     if(livePreviewBean != null && mView != null && mView.isActive()){
                         List<LivePreviewBean.ListBean> listBeans = livePreviewBean.getList();
-                        if (listBeans != null && listBeans.size() > 0) {
-                            LogUtils.d(listBeans.toString());
-                            mView.showLivePreviewInfo(listBeans);
-                        }else{
-
-                        }
+                        mView.showLivePreviewInfo(listBeans,isRefresh);
                     }//todo 添加else if 的代码
                 }
 
