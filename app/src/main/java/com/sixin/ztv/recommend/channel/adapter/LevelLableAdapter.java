@@ -81,7 +81,7 @@ public class LevelLableAdapter extends CommonNavigatorAdapter {
                         mFragments.add(LabelFragment8.newInstance());
                         break;
                     case 9:
-                        mFragments.add(LabelFragment9.newInstance());
+                        mFragments.add(LabelFragment9.newInstance(channelLevelLableBean));
                         break;
                     case 10:
                         mFragments.add(LabelFragment10.newInstance());
