@@ -3,6 +3,7 @@ package com.sixin.ztv.Http.api;
 import com.sixin.ztv.Http.response.Response;
 import com.sixin.ztv.recommend.channel.fragments.fragment11.livepreview.model.bean.LivePreviewBean;
 import com.sixin.ztv.recommend.channel.fragments.fragment11.model.bean.SubLabelBean;
+import com.sixin.ztv.recommend.channel.fragments.fragment14.model.bean.MatchBean;
 import com.sixin.ztv.recommend.channel.model.bean.ChannelBannerBean;
 import com.sixin.ztv.recommend.channel.model.bean.ChannelLevelLableBean;
 import com.sixin.ztv.recommend.model.bean.RecommendChannelBean;
@@ -39,4 +40,7 @@ public interface Request {
 
     @GET(BASE_URL+"gv2api/rkc/roomlistV1/3_{sub_label_id}/{position}/20/android?client_sys=android")
     Observable<Response<LivePreviewBean>> getLivePreviewInfo(@Path("sub_label_id") int subLabelId,@Path("position") int position);
+
+    @GET(BASE_URL+"live/customcate2/getMatchList")
+    Observable<Response<List<MatchBean>>> getMatchInfo(@Query("cate2_id")int cateId,@Query("client_sys")String clientSys);
 }

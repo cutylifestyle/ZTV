@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/img_team1_logo"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_team1_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/img_team1_logo"
+        app:layout_constraintStart_toStartOf="@+id/img_team1_logo"
+        app:layout_constraintTop_toBottomOf="@+id/img_team1_logo" />
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/img_team2_logo"
+        android:layout_width="@dimen/dp_48"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_team2_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/img_team2_logo"
+        app:layout_constraintStart_toStartOf="@+id/img_team2_logo"
+        app:layout_constraintTop_toBottomOf="@+id/img_team2_logo" />
+
+    <TextView
+        android:id="@+id/tv_match_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_8"
+        app:layout_constraintEnd_toStartOf="@+id/img_team2_logo"
+        app:layout_constraintStart_toEndOf="@+id/img_team1_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:textSize="@dimen/sp_10"/>
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        app:layout_constraintEnd_toEndOf="@+id/tv_match_time"
+        app:layout_constraintStart_toStartOf="@+id/tv_match_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_match_time"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_team1_name"
+        android:background="@color/colorDividerMatch"/>
+
+    <ImageView
+        android:contentDescription="@string/app_name"
+        android:id="@+id/img_match_video_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintEnd_toStartOf="@+id/tv_team2_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_team1_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score"
+        android:scaleType="centerCrop"/>
+
+
+</android.support.constraint.ConstraintLayout>

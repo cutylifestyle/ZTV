@@ -15,4 +15,5 @@
     <color name="colorNormalSubLabelTv">#878686</color>
     <color name="colorSelectBgSubLabel">#F8A080</color>
     <color name="colorSelectSubLabelTv">#FE5C41</color>
+    <color name="colorDividerMatch">#E5E5E5</color>
 </resources>
