@@ -2,12 +2,14 @@ package com.sixin.ztv.home;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.gyf.barlibrary.ImmersionBar;
 import com.sixin.ztv.R;
 import com.sixin.ztv.base.BaseActivity;
+import com.sixin.ztv.base.BaseMvpActivity;
 import com.sixin.ztv.entertainment.EntertainmentFragment;
 import com.sixin.ztv.find.FindFragment;
 import com.sixin.ztv.fishbar.FishBarFragment;
@@ -18,7 +20,7 @@ import com.sixin.ztv.recommend.RecommendFragment;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HomeActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> implements BottomNavigationBar.OnTabSelectedListener,HomeConstract.View {
     //todo BaseActivity封装  BaseFragment的封装
     //todo 平板提供一个hd版本的
     //todo activity的跳转动画
@@ -43,6 +45,9 @@ public class HomeActivity extends BaseActivity implements BottomNavigationBar.On
 
     @BindView(R.id.img_im)
     ImageView mImgIm;
+
+    @BindView(R.id.tv_search)
+    TextView mTvSearch;
 
     private String tagRecommend;
     private String tagEntertainment;
@@ -79,6 +84,11 @@ public class HomeActivity extends BaseActivity implements BottomNavigationBar.On
         initFragmentTag();
         initBottomNavigationBar();
         setDefaultFragment();
+    }
+
+    @Override
+    protected void loadData() {
+        mPresenter.getHotSearchInfo();
     }
 
     private void setDefaultFragment() {
@@ -151,5 +161,21 @@ public class HomeActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onTabReselected(int position) {
+    }
+
+    @Override
+    protected HomeConstract.Presenter initPresenter() {
+        return new HomePresenter(this);
+    }
+
+    @Override
+    public void showHotSearchInfo(String hotSearch) {
+        mTvSearch.setText(hotSearch);
+    }
+
+    @Override
+    public boolean isActive() {
+        //todo 此处需要更改
+        return true;
     }
 }

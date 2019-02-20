@@ -56,7 +56,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //view与数据绑定
         initView();
+        //
+        loadData();
     }
+
+    protected void loadData(){};
 
     private void initBundleParams(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
