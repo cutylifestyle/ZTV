@@ -189,13 +189,13 @@ final class ViewfinderView extends View {
         textPaint.setStyle(Paint.Style.FILL);
         textPaint.setColor(scannerOptions.getTipTextColor());
         textPaint.setTextSize(tipTextSize);
-
-        float x = frame.left;//文字开始位置
+        int dx = 100;
+        float x = frame.left-dx*0.5f;//文字开始位置
         //根据 drawTextGravityBottom 文字在扫描框上方还是上文，默认下方
         float y = !scannerOptions.isTipTextToFrameTop() ? frame.bottom + tipTextMargin
                 : frame.top - tipTextMargin;
 
-        StaticLayout staticLayout = new StaticLayout(scannerOptions.getTipText(), textPaint, frame.width()
+        StaticLayout staticLayout = new StaticLayout(scannerOptions.getTipText(), textPaint, frame.width()+dx
                 , Layout.Alignment.ALIGN_CENTER, 1.0f, 0, false);
         canvas.save();
         canvas.translate(x, y);

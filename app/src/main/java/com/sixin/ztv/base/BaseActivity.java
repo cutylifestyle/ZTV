@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.sixin.ztv.App;
@@ -33,8 +35,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean mAllowScreenRotate = false;
 
     @Nullable
-    @BindView(R.id.toolbar_common)
+    @BindView(R.id.x_toolbar_common)
     Toolbar mToolbarCommon;
+
+    @Nullable
+    @BindView(R.id.x_img_left)
+    ImageView mImgLeft;
+
+    @Nullable
+    @BindView(R.id.x_img_right)
+    ImageView mImgRight;
+
+    @Nullable
+    @BindView(R.id.x_tv_title)
+    TextView mTvTitle;
 
 
     @Override
@@ -78,6 +92,18 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Toolbar getCommonToolbar() {
         return mToolbarCommon;
+    }
+
+    protected ImageView getImgLeft() {
+        return mToolbarCommon == null? null:mImgLeft;
+    }
+
+    protected ImageView getImgRight(){
+        return mToolbarCommon == null ? null : mImgRight;
+    }
+
+    protected TextView getTvTitle() {
+        return mToolbarCommon == null? null : mTvTitle;
     }
 
     protected void loadData(){};

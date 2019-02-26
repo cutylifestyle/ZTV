@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_common"
+        android:id="@+id/x_toolbar_common"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_48"
         app:layout_constraintEnd_toEndOf="parent"
@@ -14,36 +14,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_left"
+        android:id="@+id/x_img_left"
         android:layout_width="@dimen/dp_48"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_common"
-        app:layout_constraintStart_toStartOf="@+id/toolbar_common"
-        app:layout_constraintTop_toTopOf="@+id/toolbar_common"
+        app:layout_constraintBottom_toBottomOf="@+id/x_toolbar_common"
+        app:layout_constraintStart_toStartOf="@+id/x_toolbar_common"
+        app:layout_constraintTop_toTopOf="@+id/x_toolbar_common"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"/>
 
     <ImageView
-        android:id="@+id/img_right"
+        android:id="@+id/x_img_right"
         android:layout_width="@dimen/dp_48"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_common"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar_common"
-        app:layout_constraintTop_toTopOf="@+id/toolbar_common"
+        app:layout_constraintBottom_toBottomOf="@+id/x_toolbar_common"
+        app:layout_constraintEnd_toEndOf="@+id/x_toolbar_common"
+        app:layout_constraintTop_toTopOf="@+id/x_toolbar_common"
         android:scaleType="centerCrop"
         android:contentDescription="@string/app_name"/>
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/x_tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_common"
-        app:layout_constraintEnd_toStartOf="@+id/img_right"
-        app:layout_constraintStart_toEndOf="@+id/img_left"
-        app:layout_constraintTop_toTopOf="@+id/toolbar_common" />
+        app:layout_constraintBottom_toBottomOf="@+id/x_toolbar_common"
+        app:layout_constraintEnd_toStartOf="@+id/x_img_right"
+        app:layout_constraintStart_toEndOf="@+id/x_img_left"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
