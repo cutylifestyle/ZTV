@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -21,6 +22,7 @@ import com.sixin.ztv.utils.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -29,6 +31,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Unbinder mUnbinder;
     private boolean mAllowFullScreen = false;
     private boolean mAllowScreenRotate = false;
+
+    @Nullable
+    @BindView(R.id.toolbar_common)
+    Toolbar mToolbarCommon;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +47,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         setContentView(getLayoutId());
         mUnbinder = ButterKnife.bind(this);
+
+        //初始化通用toolBar
+        initCommonToolBar();
 
         //设置是否允许屏幕旋转
         if (mAllowScreenRotate) {
@@ -58,6 +68,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         //
         loadData();
+    }
+
+    private void initCommonToolBar() {
+        if (mToolbarCommon != null && getSupportActionBar() == null) {
+            setSupportActionBar(mToolbarCommon);
+        }
+    }
+
+    protected Toolbar getCommonToolbar() {
+        return mToolbarCommon;
     }
 
     protected void loadData(){};

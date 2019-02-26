@@ -1,5 +1,6 @@
 package com.sixin.ztv.home;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,11 +17,14 @@ import com.sixin.ztv.fishbar.FishBarFragment;
 import com.sixin.ztv.follow.FollowFragment;
 import com.sixin.ztv.helper.BottomNavigationItemHelper;
 import com.sixin.ztv.recommend.RecommendFragment;
+import com.sixin.ztv.scanner.ScannerActivity;
+import com.sixin.ztv.utils.ActivityUtils;
+import com.sixin.ztv.widget.XTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> implements BottomNavigationBar.OnTabSelectedListener,HomeConstract.View {
+public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> implements BottomNavigationBar.OnTabSelectedListener,HomeConstract.View, XTextView.DrawableRightListener {
     //todo BaseActivity封装  BaseFragment的封装
     //todo 平板提供一个hd版本的
     //todo activity的跳转动画
@@ -47,7 +51,7 @@ public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> imple
     ImageView mImgIm;
 
     @BindView(R.id.tv_search)
-    TextView mTvSearch;
+    XTextView mTvSearch;
 
     private String tagRecommend;
     private String tagEntertainment;
@@ -55,7 +59,7 @@ public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> imple
     private String tagFishBar;
     private String tagFind;
 
-    @OnClick({R.id.img_person, R.id.img_watching_history, R.id.img_mobile_games, R.id.img_im})
+    @OnClick({R.id.img_person, R.id.img_watching_history, R.id.img_mobile_games, R.id.img_im,R.id.tv_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_person:
@@ -81,9 +85,14 @@ public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> imple
 
     @Override
     protected void initView() {
+        initTvSearch();
         initFragmentTag();
         initBottomNavigationBar();
         setDefaultFragment();
+    }
+
+    private void initTvSearch() {
+        mTvSearch.setDrawableRightListener(this);
     }
 
     @Override
@@ -177,5 +186,10 @@ public class HomeActivity extends BaseMvpActivity<HomeConstract.Presenter> imple
     public boolean isActive() {
         //todo 此处需要更改
         return true;
+    }
+
+    @Override
+    public void onDrawableRightClick(View view) {
+        ActivityUtils.startActivity(new Intent(this, ScannerActivity.class));
     }
 }

@@ -70,7 +70,8 @@ public class WelcomeActivity extends BaseActivity {
         String[] permissions = new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.READ_PHONE_STATE
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CAMERA
         };
         AndPermission.with(this)
                      .runtime()
@@ -152,7 +153,8 @@ public class WelcomeActivity extends BaseActivity {
                         String[] permissions = new String[]{
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.READ_PHONE_STATE
+                                Manifest.permission.READ_PHONE_STATE,
+                                Manifest.permission.CAMERA
                         };
                         if(AndPermission.hasPermissions(WelcomeActivity.this, permissions)){
                                 setGlobData();
